@@ -6,7 +6,10 @@ pipeline{
    stages{
     stage('sonar-scan'){
         step{
-            sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ztonui_geo-app2'
+            withSonarQubeEnv('sonarqube'){
+sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ztonui_geo-app2'
+            }
+            
         }
     }
     stage("maven"){
