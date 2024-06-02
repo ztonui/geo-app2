@@ -24,5 +24,10 @@ sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.pr
             "http://ec2-35-168-7-4.compute-1.amazonaws.com:8081/artifactory/geolocation/geo/bio_${BUILD_ID}.jar"'
         }
     }
+    stage('docker login'){
+            steps{
+                sh aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 604397289208.dkr.ecr.us-east-1.amazonaws.com
+            }
+        }
    }
 }
